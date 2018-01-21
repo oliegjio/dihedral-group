@@ -20,7 +20,7 @@ Module[{},
 		(* Draw polygon *)
 		Module[{i, nextPoint}, For[i = 0, i < angles, i++,
 			nextPoint = pointOnCircle @ currentAngle;
-			AppendTo[graph, {Blue, Line @ {lastPoint, nextPoint}}];
+			AppendTo[graph, {Blue, Line @ {lastPoint, nextPoint}, Text[Style[i, 18, Black], lastPoint * 1.15]}];
 			lastPoint = nextPoint;
 			currentAngle = currentAngle + degree;
 		]];

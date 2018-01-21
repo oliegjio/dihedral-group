@@ -30,6 +30,7 @@ commutatives, center, normalizer, status, polygon, cayleyTable},
 		commutatives = findCommutatives @ dihedral;
 		center = findCenter @ dihedral;
 		normalizer = findNormalizer[dihedral, inverses];
+		elements = findElements @ angles;
 	] &;
 
 	table1 = {
@@ -41,7 +42,8 @@ commutatives, center, normalizer, status, polygon, cayleyTable},
 		{"Inverses:", Dynamic @ inverses},
 		{"Commutatives:", Dynamic @ commutatives},
 		{"Center:", Dynamic @ center},
-		{"Normalizer:", Dynamic @ Grid @ normalizer}
+		{"Normalizer:", Dynamic @ Grid @ normalizer},
+		{"Elements:", Dynamic @ elements}
 	};
 
 	Print @ Grid @ table1;
@@ -50,6 +52,9 @@ commutatives, center, normalizer, status, polygon, cayleyTable},
 ];
 End[];
 EndPackage[];
+
+
+
 
 
 
