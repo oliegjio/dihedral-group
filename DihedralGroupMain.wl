@@ -36,7 +36,7 @@ commutatives, center, normalizer, status, polygon, cayleyTable, elements},
 
 	table1 = {
 		{Slider[Dynamic[angles, refresh], {3, 10, 1}], Dynamic @ status},
-		{Dynamic @ polygon, Dynamic @ cayleyTable}
+		{Dynamic @ Magnify[polygon, 1.2], Dynamic @ cayleyTable}
 	};
 	
 	table2 = {
@@ -53,12 +53,6 @@ commutatives, center, normalizer, status, polygon, cayleyTable, elements},
 ];
 End[];
 EndPackage[];
-
-
-
-
-
-
 
 
 

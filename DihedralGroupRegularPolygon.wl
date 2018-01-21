@@ -18,9 +18,10 @@ Module[{},
 		lastPoint = pointOnCircle[currentAngle - degree];
 	
 		(* Draw polygon *)
-		Module[{i, nextPoint}, For[i = 0, i < angles, i++,
+		Module[{i, nextPoint, label}, For[i = 0, i < angles, i++,
 			nextPoint = pointOnCircle @ currentAngle;
-			AppendTo[graph, {Blue, Line @ {lastPoint, nextPoint}, Text[Style[i, 18, Black], lastPoint * 1.15]}];
+			label = Text[Style[i, 18, Black], nextPoint * 1.25];
+			AppendTo[graph, {Blue, Line @ {lastPoint, nextPoint}, label}];
 			lastPoint = nextPoint;
 			currentAngle = currentAngle + degree;
 		]];
@@ -30,8 +31,8 @@ Module[{},
 			(* Draw reflection lines for polygon with even amount of angles:
 				middle-side to middle-side lines, vertex to pair vertex lines. *)
 			Module[{vertex, vertexPair, line, firstPointX, firstPointY, secondPointX,
-			secondPointY, firstPointPairX, firstPointPairY, secondPointPairX,
-			secondPointPairY, midPoint1X, midPoint1Y, i, midPoint2X, midPoint2Y},
+			secondPointY, firstPointPairX, firstPointPairY, secondPointPairX, label2,
+			secondPointPairY, midPoint1X, midPoint1Y, i, midPoint2X, midPoint2Y, label1},
 			For[i = 1, i <= angles / 2, i++,
 				vertex = graph[[i, 2, 1, 1]];
 				vertexPair = graph[[i + (angles / 2), 2, 1, 1]];
@@ -54,15 +55,19 @@ Module[{},
 				midPoint2X = midPoint[firstPointPairX, secondPointPairX];
 				midPoint2Y = midPoint[firstPointPairY, secondPointPairY];
 
+				label1 = Text[Style[makeLabel["S", i - 1 + angles / 2], Gray], {midPoint1X, midPoint1Y} * 1.4];
+				label2 = Text[Style[makeLabel["S", i - 1], Gray], {secondPointX, secondPointY} * 1.7];
+				
 				line = Line @ {{midPoint1X, midPoint1Y}, {midPoint2X, midPoint2Y}};
-				AppendTo[graph, {Green, line}];
+				
+				AppendTo[graph, {Green, line, Black, label1, label2}];
 			]];
 		,
 			(* Draw reflection lines for polygon with odd
 				amount of angles: vertex to middle-side lines. *)
 			Module[{i, floor, floorIterator, ceiling, ceilingIterator, firstPointX,
 			firstPointY, secondPointX, secondPointY, midPointX, midPointY, vertex,
-			line}, For[i = 1, i <= angles, i++,
+			line, label}, For[i = 1, i <= angles, i++,
 				floor = Floor[angles / 2];
 				floorIterator = i + floor;
 				ceiling = Ceiling[angles / 2];
@@ -82,7 +87,8 @@ Module[{},
 				vertex = graph[[i, 2, 1, 1]];
 
 				line = Line @ {vertex, {midPointX, midPointY}};
-				AppendTo[graph, {Red, line}];
+				label = Text[Style[makeLabel["S", i - 1], Gray], {midPointX, midPointY} * 1.4];
+				AppendTo[graph, {Red, line, label}];
 			];
 		]];
 	
