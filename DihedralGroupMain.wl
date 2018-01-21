@@ -13,10 +13,11 @@ Needs @ "DihedralGroupCommutativesFinder`";
 Needs @ "DihedralGroupCenterFinder`";
 Needs @ "DihedralGroupNormalizerFinder`";
 Needs @ "DihedralGroupStatusGenerator`";
+Needs @ "DihedralGroupElementsFinder`";
 
 Begin @ "`Private`";
 Module[{refresh, table1, table2, angles, firstPart, secondPart, dihedral, inverses,
-commutatives, center, normalizer, status, polygon, cayleyTable},
+commutatives, center, normalizer, status, polygon, cayleyTable, elements},
 
 	refresh = Module[{},
 		angles = #;
@@ -52,6 +53,9 @@ commutatives, center, normalizer, status, polygon, cayleyTable},
 ];
 End[];
 EndPackage[];
+
+
+
 
 
 
